@@ -7,16 +7,16 @@ class ScriptTrippinOrNah(object):
         self.orig = orig
         self.new = new
 
-    def read_organizers_from_csv(self, file):
+    def read_ids_from_csv(self, file):
         with open(file, 'rb') as f:
             reader = csv.reader(f)
             data = list(reader)
-        organizer_ids = [organizer_id for sublist in data for organizer_id in sublist]
-        return organizer_ids
+        ids = [id for sublist in data for id in sublist]
+        return ids
 
     def main(self):
-        orig_ids = self.read_organizers_from_csv(self.orig)
-        ids_left = self.read_organizers_from_csv(self.new)
+        orig_ids = self.read_ids_from_csv(self.orig)
+        ids_left = self.read_ids_from_csv(self.new)
 
         if list(set(orig_ids).intersection(ids_left)):
             print('Script missed some ids')
